@@ -13,16 +13,15 @@ namespace covidAPI.Controllers
     [Route("/api/region/")] // in this case CovidCase
     public class CovidCaseController : ControllerBase
     {
-        public CovidCaseController() {}
 
         private static readonly string[] Regions = new[]
         {
             "Lj", "Mb", "Kp", "NM"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<CovidCaseController> _logger;
 
-        public CovidCaseController(ILogger<WeatherForecastController> logger)
+        public CovidCaseController(ILogger<CovidCaseController> logger)
         {
             _logger = logger;
         }
@@ -42,9 +41,9 @@ namespace covidAPI.Controllers
         //}
 
         [HttpGet("{id}")]
-        public ActionResult<Case> GetOne(string date)
+        public ActionResult<Case> GetOne(string id)
         {
-            var c = CovidService.Get(date);
+            var c = CovidService.Get(id);
 
             if (c == null)
                 return NotFound();
