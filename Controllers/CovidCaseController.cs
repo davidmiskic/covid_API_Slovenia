@@ -24,6 +24,7 @@ namespace covidAPI.Controllers
         public CovidCaseController(ILogger<CovidCaseController> logger)
         {
             _logger = logger;
+            CovidService.Init();
         }
 
         [HttpGet]
