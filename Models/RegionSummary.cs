@@ -6,5 +6,6 @@ namespace CovidAPI.Models
     {
         public string Id { get; set; } //region
         public int Active { get; set; }
+        public DateTime from { get; set; }
     }
 }

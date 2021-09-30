@@ -106,7 +106,7 @@ public class DataGenerator
                     region_za_vaccinated_2nd_todate = fields[66]
                 });
 
-                if (count > 10) break;
+                //if (count > 10) break;
 
             }
             file.Close();

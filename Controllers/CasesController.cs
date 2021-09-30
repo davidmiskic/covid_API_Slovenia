@@ -102,21 +102,20 @@ namespace covidAPI.Controllers
         [HttpGet("lastweek")]
         public async Task<ActionResult<IEnumerable<RegionSummary>>> GetWeek()
         {
-            DateTime to = DateTime.Now.Date;
-            DateTime from = to.AddDays(-7);
+            DateTime from = DateTime.Now.AddDays(-7).Date;
             List<RegionSummary> regionweeks = new List<RegionSummary>();
             string[] possibleRegions = { "lj", "ce", "kr", "nm", "kk", "kp", "mb", "ms", "ng", "po", "sg", "za" };
 
             foreach (string region in possibleRegions) //get all entries of last week
             {
-                List<DayCase> week = await _context.Cases.Where(c => DateTime.Compare(c.Id, from) >= 0 && DateTime.Compare(c.Id, to) <= 0)
+                List<DayCase> week = await _context.Cases.Where(c => DateTime.Compare(c.Id, from) >= 0)
                     .Select(dc => new DayCase
                     {
                         Id = dc.Id,
                         ActiveDay = typeof(Case).GetProperty("region_" + region.ToLower() + "_cases_active").GetValue(dc).ToString(),
-                        Vac1st = typeof(Case).GetProperty("region_" + region.ToLower() + "_vaccinated_1st_todate").GetValue(dc).ToString(),
-                        Vac2nd = typeof(Case).GetProperty("region_" + region.ToLower() + "_vaccinated_2nd_todate").GetValue(dc).ToString(),
-                        Deceased = typeof(Case).GetProperty("region_" + region.ToLower() + "_deceased_todate").GetValue(dc).ToString()
+                        Vac1st = "",
+                        Vac2nd = "",
+                        Deceased = ""
                     }).ToListAsync();
                 int active = 0;
                 foreach(DayCase dc in week)
@@ -127,9 +126,11 @@ namespace covidAPI.Controllers
                 regionweeks.Add(new RegionSummary
                 {
                     Id = region,
-                    Active = active
+                    Active = active,
+                    from = from.Date
                 });
             }
+            regionweeks = regionweeks.OrderByDescending(o => o.Active).ToList();
             return regionweeks;
         }
 
