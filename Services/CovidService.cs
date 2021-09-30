@@ -16,8 +16,8 @@ namespace CovidAPI.Services
         {
             Cases = new List<Case>
             {
-                new Case { Date = "2020-05-12", Region = "Lj2" },
-                new Case { Date = "2020-05-15", Region = "Lj2" }
+                new Case { Id = "2020-05-12", Region = "Lj2" },
+                new Case { Id = "2020-05-15", Region = "Lj2" }
             };
         }
 
@@ -30,11 +30,11 @@ namespace CovidAPI.Services
 
         public static List<Case> GetAll() => Cases;
 
-        public static Case Get(string id) => Cases.FirstOrDefault(p => p.Date == id);
+        public static Case Get(string id) => Cases.FirstOrDefault(p => p.Id == id);
 
         public static void Add(Case c)
         {
-            c.Date = System.DateTime.Now.AddDays(nextId++).ToShortDateString();
+            c.Id = System.DateTime.Now.AddDays(nextId++).ToShortDateString();
             Cases.Add(c);
         }
 
@@ -49,7 +49,7 @@ namespace CovidAPI.Services
 
         public static void Update(Case c)
         {
-            var index = Cases.FindIndex(p => p.Date == c.Date);
+            var index = Cases.FindIndex(p => p.Id == c.Id);
             if (index == -1)
                 return;
 

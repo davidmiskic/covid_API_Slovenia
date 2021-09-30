@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using CovidAPI.Models;
 
 namespace covidAPI
 {
@@ -32,10 +34,12 @@ namespace covidAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "covidAPI", Version = "v1" });
             });
+            services.AddDbContext<CaseContext>(opt =>
+                                               opt.UseInMemoryDatabase("CaseList"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CaseContext context)
         {
             if (env.IsDevelopment())
             {
