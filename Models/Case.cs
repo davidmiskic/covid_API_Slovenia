@@ -1,8 +1,10 @@
+using System;
+
 namespace CovidAPI.Models
 {
     public class Case
     {
-        public string Id { get; set; }
+        public DateTime Id { get; set; }
         public string region_ce_cases_active { get; set; }
         public string region_ce_cases_confirmed_todate { get; set; }
         public string region_ce_deceased_todate { get; set; }

@@ -1,8 +1,10 @@
+using System;
+
 namespace CovidAPI.Models
 {
     public class DayCase
     {
-        public string Id { get; set; }
+        public DateTime Id { get; set; }
         public string Region { get; set; }
         public string ActiveDay { get; set; }
         public string Vac1st { get; set; }

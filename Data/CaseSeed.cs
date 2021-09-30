@@ -37,7 +37,7 @@ public class DataGenerator
                 CSVCases.Add(
                 new Case
                 {
-                    Id = fields[0],
+                    Id = DateTime.Parse(fields[0]).Date,
                     region_ce_cases_active = fields[1],
                     region_ce_cases_confirmed_todate = fields[2],
                     region_ce_deceased_todate = fields[3],
