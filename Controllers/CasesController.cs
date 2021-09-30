@@ -9,7 +9,7 @@ using CovidAPI.Models;
 
 namespace covidAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("apidb/[controller]")]
     [ApiController]
     public class CasesController : ControllerBase
     {

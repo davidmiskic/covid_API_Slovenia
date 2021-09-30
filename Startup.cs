@@ -58,8 +58,6 @@ namespace covidAPI
             {
                 endpoints.MapControllers();
             });
-
-            //context.FillFromCSV();
         }
     }
 }
