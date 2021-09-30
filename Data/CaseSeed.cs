@@ -24,20 +24,23 @@ public class DataGenerator
             
             StreamReader file = new StreamReader("db.csv");
             string line;
-            int count = 0;
+            int count = -1;
             List<Case> CSVCases = new List<Case>();
 
             while ((line = file.ReadLine()) != null)
             {
-                if (count == 0) continue;
+                Console.WriteLine("Count " + count);
                 count++;
+                if (count == 0) continue;
+                
 
                 string[] fields = line.Split(',');
+                Console.WriteLine(fields);
                 CSVCases.Add(
                 new Case
                 {
                     Id = fields[0],
-                    Region = fields[1]
+                    Region = "new" + fields[1]
                 });
 
                 if (count > 10) break;
@@ -51,7 +54,7 @@ public class DataGenerator
                 //cmd.Parameters.AddWithValue("@Serial", Security.RemoveSpecialCharacters(fields[0].ToString()).Trim().Trim());
 
             }
-
+            file.Close();
             context.Cases.AddRange(CSVCases);
 
 
