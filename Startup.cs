@@ -35,7 +35,7 @@ namespace covidAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "covidAPI", Version = "v1" });
             });
             services.AddDbContext<CaseContext>(opt =>
-                                               opt.UseInMemoryDatabase("CaseList"));
+                                               opt.UseInMemoryDatabase("Cases"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +58,8 @@ namespace covidAPI
             {
                 endpoints.MapControllers();
             });
+
+            //context.FillFromCSV();
         }
     }
 }

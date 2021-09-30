@@ -12,12 +12,12 @@ public class CaseSeeder
     {
         _context.Cases.Add(new Case
         {
-            Id = "Test Post 1",
+            Id = "Test Post 1caseseeder",
             Region = "This is my standard post for testing"
         });
         _context.Cases.Add(new Case
         {
-            Id = "Test Post 2",
+            Id = "Test Post 2caseseeder",
             Region = "This is my aside post for testing"
         });
 
