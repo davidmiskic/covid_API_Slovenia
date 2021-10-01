@@ -18,7 +18,7 @@ namespace covidAPI
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
-                //3. Get the instance of BoardGamesDBContext in our services layer
+                //3. Get the instance of CaseContext in our services layer
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<CaseContext>();
 
