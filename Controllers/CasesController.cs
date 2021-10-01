@@ -28,9 +28,9 @@ namespace covidAPI.Controllers
         }
 
         [HttpGet("{date}")]
-        public async Task<ActionResult<Case>> GetCase(string id)
+        public async Task<ActionResult<Case>> GetCase(string date)
         {
-            var @case = await _context.Cases.FindAsync(DateTime.Parse(id).Date);
+            var @case = await _context.Cases.FindAsync(DateTime.Parse(date).Date);
 
             if (@case == null)
             {
